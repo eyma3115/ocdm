@@ -1,3 +1,4 @@
+import pickle
 import numpy as np
 import pandas as pd
 import torch
@@ -20,9 +21,9 @@ def multistage_order_search(data, stage_set):
     return order, dag_oc_pd
 
 if __name__ == '__main__':
-    data = pd.read_csv('./data_demo/data_causalAssembly.csv', index_col=0)
-    stage_set = [list(range(0, 6)), list(range(6, 40)), list(range(40, 56)), list(range(56, 82)), list(range(82, 98))]
-
+    data = pd.read_csv('./data_demo/data.csv', index_col=0)
+    with open('./data_demo/stage.pkl', 'rb') as f:
+        stage_set = pickle.load(f)
     #Causal order search
     order, dag_oc = multistage_order_search(data, stage_set)
 
