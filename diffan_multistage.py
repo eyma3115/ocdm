@@ -6,6 +6,7 @@ from collections import Counter
 from copy import deepcopy
 from tqdm import tqdm
 
+from torch.nn import Dropout, LayerNorm, Linear, Module, Sequential, BatchNorm1d
 from gaussian_diffusion import GaussianDiffusion, UniformSampler, get_named_beta_schedule, mean_flat, \
                                LossType, ModelMeanType, ModelVarType
 import time
