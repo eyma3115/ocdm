@@ -20,9 +20,8 @@ def multistage_order_search(data, stage_set):
     return order, dag_oc_pd
 
 if __name__ == '__main__':
-    data = pd.read_csv('./example_simulation/data.csv', index_col=0)
-    with open('./example_simulation/stage.pkl', 'rb') as f:
-        stage_set = pickle.load(f)
+    data = pd.read_csv('./data_demo/data_causalAssembly.csv', index_col=0)
+    stage_set = [list(range(0, 6)), list(range(6, 40)), list(range(40, 56)), list(range(56, 82)), list(range(82, 98))]
 
     #Causal order search
     order, dag_oc = multistage_order_search(data, stage_set)
@@ -39,6 +38,6 @@ if __name__ == '__main__':
     params['coef'] = 1
     params['sigma'] = 1
 
-    pruner = STGPruner(len(order), dag_oc, order, params, binary_outcome=False)
+    pruner = STGPruner(len(order), torch.Tensor(dag_oc), order, params, binary_outcome=False)
     pruner.prune_all(torch.Tensor(data.values))
 
