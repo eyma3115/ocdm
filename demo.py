@@ -39,6 +39,6 @@ if __name__ == '__main__':
     params['coef'] = 1
     params['sigma'] = 1
 
-    pruner = STGPruner(dag_oc.shape[0], dag_oc, order, params, binary_outcome=False)
+    pruner = STGPruner(len(order), dag_oc, order, params, binary_outcome=False)
     pruner.prune_all(torch.Tensor(data.values))
 
