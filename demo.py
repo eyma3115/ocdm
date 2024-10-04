@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import torch
 from diffan_multistage import DiffAN_multistage
+from STG_pruning import *
 from utils import full_DAG
 from simulation import generate_layeredDAG, gp_randomData
 from sklearn.preprocessing import StandardScaler
