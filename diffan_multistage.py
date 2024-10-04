@@ -46,7 +46,7 @@ class DiffMLP(Module):
 
 
 class DiffAN_multistage():
-    def __init__(self, n_nodes, n_stages, masking=True, residue=True, prune=False,
+    def __init__(self, n_nodes, n_stages, masking=True, residue=True,
                 epochs: int = 1000, batch_size: int = 128, learning_rate: float = 0.0001):
         super().__init__()
         self.n_nodes = n_nodes
@@ -80,9 +80,6 @@ class DiffAN_multistage():
         self.masking = masking
         self.residue = residue
         self.sorting = (not masking) and (not residue)
-        self.prune = prune
-        ## Pruning
-        self.cutoff = 0.001
     
     def fit(self, X, stage_set):
         X = (X - X.mean(0, keepdims = True)) / X.std(0, keepdims = True)
