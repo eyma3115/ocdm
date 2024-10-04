@@ -19,18 +19,9 @@ def multistage_order_search(data, stage_set):
     return order, dag_oc_pd
 
 if __name__ == '__main__':
-    #Random layered DAG simulation
-    n_layers = 10
-    stage_degree = 10
-    p_intra = 0.2
-    p_inter = 0.2
-    n_sample = 5000
-
-    dag_gt, stage_set = generate_layeredDAG(n_layers, stage_degree, p_intra, p_inter)
-    data = gp_randomData(dag_gt, n_sample)
-
-    dag_gt = pd.DataFrame(data=dag_gt, index=np.arange(dag_gt.shape[0]), columns=np.arange(dag_gt.shape[0]))
-    data = pd.DataFrame(data=data, columns=np.arange(dag_gt.shape[0]))
+    data = pd.read_csv('./example_simulation/data.csv', index_col=0)
+    with open('./example_simulation/stage.pkl', 'rb') as f:
+        stage_set = pickle.load(f)
 
     #Causal order search
     order, dag_oc = multistage_order_search(data, stage_set)
