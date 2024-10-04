@@ -24,7 +24,7 @@ if __name__ == '__main__':
     stage_degree = 10
     p_intra = 0.2
     p_inter = 0.2
-    n_sample = 10000
+    n_sample = 5000
 
     dag_gt, stage_set = generate_layeredDAG(n_layers, stage_degree, p_intra, p_inter)
     data = gp_randomData(dag_gt, n_sample)
