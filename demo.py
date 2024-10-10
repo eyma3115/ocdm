@@ -28,17 +28,6 @@ if __name__ == '__main__':
     order, dag_oc = multistage_order_search(data, stage_set)
 
     #STG-pruning
-    params = {}
-    params['h_dim'] = 128
-    params['n_layers'] = 3
-    params['batch_size'] = 256
-    params['lr'] = 0.0001
-    params['step_size'] = 50
-    params['gamma'] = 0.99
-    params['n_epochs'] = 300
-    params['coef'] = 1
-    params['sigma'] = 1
-
     pruner = STGPruner(len(order), torch.Tensor(dag_oc), order, params, binary_outcome=False)
     pruner.prune_all(torch.Tensor(data.values))
 
